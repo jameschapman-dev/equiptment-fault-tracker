@@ -1,3 +1,4 @@
+from database import initialise_database, save_fault
 def get_required_text(prompt):
     while True:
         value = input(prompt).strip()
@@ -27,9 +28,11 @@ def report_fault():
     print(f"Description: {description}")
     print(f"Priority: {priority}")
     print("Status: open")
-    print("Preview only — this fault has not been saved.")
+    fault_id = save_fault(equipment, description, priority)
+    print(f"Fault #{fault_id} saved successfully.")
 
 def main():
+    initialise_database()
     while True:
         print("\nEquipment Fault Tracker")
         print("1. Report a fault")
