@@ -1,3 +1,34 @@
+def get_required_text(prompt):
+    while True:
+        value = input(prompt).strip()
+
+        if value:
+            return value
+
+        print("This field cannot be empty.")
+
+
+def report_fault():
+    print("\nReport a fault")
+
+    equipment = get_required_text("Equipment name: ")
+    description = get_required_text("Describe the fault: ")
+
+    while True:
+        priority = input("Priority (low/medium/high): ").strip().lower()
+
+        if priority in ("low", "medium", "high"):
+            break
+
+        print("Please enter low, medium or high.")
+
+    print("\nFault details")
+    print(f"Equipment: {equipment}")
+    print(f"Description: {description}")
+    print(f"Priority: {priority}")
+    print("Status: open")
+    print("Preview only — this fault has not been saved.")
+
 def main():
     while True:
         print("\nEquipment Fault Tracker")
@@ -8,7 +39,7 @@ def main():
         choice = input("Choose an option: ").strip()
 
         if choice == "1":
-            print("Fault reporting is coming next.")
+            report_fault()
         elif choice == "2":
             print("Fault viewing is coming next.")
         elif choice == "3":
